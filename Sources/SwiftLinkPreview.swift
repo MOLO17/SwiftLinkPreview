@@ -170,14 +170,14 @@ extension SwiftLinkPreview {
         
         if let url: NSURL = self.result["finalUrl"] as? NSURL {
             
-            if(url.absoluteString.isImage()) {
+            if(url.absoluteString!.isImage()) {
                 
-                self.fillRemainingInfo("", description: "", images: [url.absoluteString], image: url.absoluteString)
+                self.fillRemainingInfo("", description: "", images: [url.absoluteString!], image: url.absoluteString!)
                 completion()
                 
             } else {
                 
-                let sourceUrl = url.absoluteString.hasPrefix("http://") || url.absoluteString.hasPrefix("https://") ? url : NSURL(string: "http://\(url)")
+                let sourceUrl = url.absoluteString!.hasPrefix("http://") || url.absoluteString!.hasPrefix("https://") ? url : NSURL(string: "http://\(url)")
                 
                 do {
                     
@@ -292,7 +292,7 @@ extension SwiftLinkPreview {
     // Extract canonical URL
     internal func extractCanonicalURL(finalUrl: NSURL!) -> String {
         
-        let preUrl: String = finalUrl.absoluteString
+        let preUrl: String = finalUrl.absoluteString!
         let url = preUrl
             .replace("http://", with: "")
             .replace("https://", with: "")
